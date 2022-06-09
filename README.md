@@ -8,7 +8,7 @@
 
 `info': instance.info,` на -> `info': instance.info.toJson(),`
 
-# What did I use:
+# На что обратить внимание:
 
 - [Generic types](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/data/json_converters/info_result_converter.dart)
 - [Extentions](https://github.com/urmatt/rick_and_morty_app/tree/main/lib/core/extentions)

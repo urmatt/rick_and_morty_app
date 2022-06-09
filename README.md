@@ -10,7 +10,7 @@ Run first generate commands
 
 `flutter pub run build_runner build`
 
-# What did I user:
+# What did I use:
 
 - [Generic types](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/data/json_converters/info_result_converter.dart)
 - [Extentions](https://github.com/urmatt/rick_and_morty_app/tree/main/lib/core/extentions)

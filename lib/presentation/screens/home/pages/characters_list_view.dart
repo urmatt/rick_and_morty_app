@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_app/data/models/models.dart';
 import 'package:rick_and_morty_app/domain/cubit/characters/characters_cubit.dart';
+import 'package:rick_and_morty_app/presentation/core/controllers/filter_controller.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/widgets.dart';
 
 class CharactersListView extends StatefulWidget {
   final Function(Character character)? onCharacterClick;
   final Map<String, String>? filter;
+  final FilterController? filterController;
 
-  const CharactersListView({
-    Key? key,
-    this.onCharacterClick,
-    this.filter,
-  }) : super(key: key);
+  CharactersListView(
+      {Key? key, this.onCharacterClick, this.filter, this.filterController})
+      : super(key: key);
 
   @override
   State<CharactersListView> createState() => _CharactersListViewState();
@@ -26,6 +26,9 @@ class _CharactersListViewState extends State<CharactersListView> {
   @override
   void initState() {
     super.initState();
+    widget.filterController?.addFilterChangeListener((filter) {
+      context.read<CharactersCubit>().getCharacters(filter: filter);
+    });
     context.read<CharactersCubit>().getCharacters(filter: widget.filter);
   }
 

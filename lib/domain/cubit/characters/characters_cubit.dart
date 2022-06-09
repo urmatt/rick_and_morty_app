@@ -17,13 +17,13 @@ class CharactersCubit extends Cubit<CharactersState> {
     emit(CharactersLoading().from(state));
     var initial = [...state.characters];
 
+    if (filter != null) {
+      initial = initial.where((e) => e.isInFilter(filter)).toList();
+    }
+
     localRepository?.getCharacters(params: params).then((local) {
-      var list = [...local.results]..insertAll(0, initial);
-      if (filter != null) {
-        list = list..where((e) => e.isInFilter(filter));
-      }
       emit(CharactersList(
-        list,
+        [...local.results]..insertAll(0, initial),
         info: local.info,
       ));
     });

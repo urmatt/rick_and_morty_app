@@ -6,6 +6,7 @@ import 'package:rick_and_morty_app/data/models/episode.dart';
 import 'package:rick_and_morty_app/data/models/info.dart';
 import 'package:rick_and_morty_app/domain/cubit/characters/characters_cubit.dart';
 import 'package:rick_and_morty_app/domain/cubit/episodes/episodes_cubit.dart';
+import 'package:rick_and_morty_app/presentation/core/controllers/filter_controller.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/cards/character_card.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/scroll_view/load_more_list.dart';
 import 'package:rick_and_morty_app/presentation/routes/routes.dart';
@@ -20,6 +21,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FilterController _filterController = FilterController();
+
   bool isLoading = false;
   Info? current;
   List<Character> characters = [];
@@ -76,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void filter(String key, String value) {
-    setState(() => filterMap = {key: value});
+    _filterController.setFilter({key: value});
   }
 
   Widget body() {
@@ -102,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (currentPage == 0) {
       return CharactersListView(
         key: Key('characters_list'),
+        filterController: _filterController,
         onCharacterClick: onCharacterClick,
         filter: filterMap,
       );

@@ -80,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        key: Key("bottom_navigation"),
         currentIndex: currentPage,
         onTap: (page) => setState(() => currentPage = page),
         items: const [
@@ -103,11 +104,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget body() {
     if (currentPage == 0) {
       return CharactersListView(
+        key: Key('characters_list'),
         onCharacterClick: onCharacterClick,
         filter: filterMap,
       );
     }
-    return EpisodesListView();
+    return EpisodesListView(
+      key: Key('episodes_list'),
+    );
   }
 
   void onCharacterClick(Character character) {

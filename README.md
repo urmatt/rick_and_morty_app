@@ -17,7 +17,5 @@ Run first generate commands
 - [Export](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/data/repositories/repositories.dart)
 - [Extending](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/core/widgets/scroll_view/load_more_list.dart)
 - [MultiBlocProvider](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/routes/routes.dart)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on
-mobile development, and a full API reference.
+- [Custom controller](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/core/controllers/filter_controller.dart)
+- [Some test](https://github.com/urmatt/rick_and_morty_app/tree/main/test/data/api/services)

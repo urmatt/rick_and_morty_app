@@ -1,14 +1,12 @@
-# rick_and_morty_api
+# Важно
 
-Rick and Morty app.
-
-## Getting Started
-
-## IMPORTANT
-
-Run first generate commands
+Сначало запустить команду
 
 `flutter pub run build_runner build`
+
+В lib/data/models/info_results.response.g.dart поменять
+
+`info': instance.info,` на -> `info': instance.info.toJson(),`
 
 # What did I use:
 

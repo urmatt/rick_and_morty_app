@@ -10,12 +10,13 @@ Run first generate commands
 
 `flutter pub run build_runner build`
 
-This project is a starting point for a Flutter application.
+# What did I user:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- [Generic types](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/data/json_converters/info_result_converter.dart)
+- [Extentions](https://github.com/urmatt/rick_and_morty_app/tree/main/lib/core/extentions)
+- [Export](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/data/repositories/repositories.dart)
+- [Extending](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/core/widgets/scroll_view/load_more_list.dart)
+- [MultiBlocProvider](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/routes/routes.dart)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials, samples, guidance on

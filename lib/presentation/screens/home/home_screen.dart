@@ -36,65 +36,43 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        key: Key("home_app_bar"),
-        title: Text("Rick and Morty"),
-        actions: [
-          PopupMenuButton(
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Icon(Icons.filter_alt_rounded),
-            ),
-            itemBuilder: (ctx) => [
-              PopupMenuItem(
-                onTap: () => filter("status", "Alive"),
-                child: Text("Alive"),
-              ),
-              PopupMenuItem(
-                onTap: () => filter("gender", "Male"),
-                child: Text("Male"),
-              ),
-              PopupMenuItem(
-                onTap: () => filter("gender", "Female"),
-                child: Text("Female"),
-              ),
-            ],
-          )
-        ],
-      ),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<CharactersCubit, CharactersState>(listener: (_, state) {
-            setState(() => isLoading = state is CharactersLoading);
-          }),
-          BlocListener<EpisodesCubit, EpisodesState>(listener: (_, state) {
-            setState(() => isLoading = state is EpisodesLoading);
-          }),
-        ],
-        child: Stack(
-          children: [
-            Positioned(
-                child: isLoading ? LinearProgressIndicator() : SizedBox()),
-            body(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        key: Key("bottom_navigation"),
-        currentIndex: currentPage,
-        onTap: (page) => setState(() => currentPage = page),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Character',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.motion_photos_on),
-            label: 'Episode',
-          )
-        ],
-      ),
+      appBar: appBar(),
+      body: body(),
+      bottomNavigationBar: bottomNavigation(),
     );
+  }
+
+  PreferredSizeWidget appBar() {
+    return AppBar(
+      key: Key("home_app_bar"),
+      title: Text("Rick and Morty"),
+      actions: actions(),
+    );
+  }
+
+  List<Widget> actions() {
+    return [
+      PopupMenuButton(
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Icon(Icons.filter_alt_rounded),
+        ),
+        itemBuilder: (ctx) => [
+          PopupMenuItem(
+            onTap: () => filter("status", "Alive"),
+            child: Text("Alive"),
+          ),
+          PopupMenuItem(
+            onTap: () => filter("gender", "Male"),
+            child: Text("Male"),
+          ),
+          PopupMenuItem(
+            onTap: () => filter("gender", "Female"),
+            child: Text("Female"),
+          ),
+        ],
+      )
+    ];
   }
 
   void filter(String key, String value) {
@@ -102,6 +80,25 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget body() {
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CharactersCubit, CharactersState>(listener: (_, state) {
+          setState(() => isLoading = state is CharactersLoading);
+        }),
+        BlocListener<EpisodesCubit, EpisodesState>(listener: (_, state) {
+          setState(() => isLoading = state is EpisodesLoading);
+        }),
+      ],
+      child: Stack(
+        children: [
+          Positioned(child: isLoading ? LinearProgressIndicator() : SizedBox()),
+          itemsList(),
+        ],
+      ),
+    );
+  }
+
+  Widget itemsList() {
     if (currentPage == 0) {
       return CharactersListView(
         key: Key('characters_list'),
@@ -120,6 +117,24 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onEpisodeClick(Episode episode) {
-    Navigator.of(context).pushNamed(Routes.character, arguments: episode);
+    Navigator.of(context).pushNamed(Routes.episode, arguments: episode);
+  }
+
+  Widget bottomNavigation() {
+    return BottomNavigationBar(
+      key: Key("bottom_navigation"),
+      currentIndex: currentPage,
+      onTap: (page) => setState(() => currentPage = page),
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.people),
+          label: 'Character',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.motion_photos_on),
+          label: 'Episode',
+        )
+      ],
+    );
   }
 }

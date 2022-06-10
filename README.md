@@ -17,3 +17,4 @@
 - [MultiBlocProvider](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/routes/routes.dart)
 - [Custom controller](https://github.com/urmatt/rick_and_morty_app/blob/main/lib/presentation/core/controllers/filter_controller.dart)
 - [Some test](https://github.com/urmatt/rick_and_morty_app/tree/main/test/data/api/services)
+- [Mixin](https://github.com/urmatt/rick_and_morty_app/tree/main/lib/presentation/routes/route_mixin.dart)

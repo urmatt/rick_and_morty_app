@@ -7,6 +7,7 @@ import 'package:rick_and_morty_app/data/models/info.dart';
 import 'package:rick_and_morty_app/domain/cubit/characters/characters_cubit.dart';
 import 'package:rick_and_morty_app/domain/cubit/episodes/episodes_cubit.dart';
 import 'package:rick_and_morty_app/presentation/core/controllers/filter_controller.dart';
+import 'package:rick_and_morty_app/presentation/routes/route_mixin.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/cards/character_card.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/scroll_view/load_more_list.dart';
 import 'package:rick_and_morty_app/presentation/routes/routes.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with RouteMixin{
   final FilterController _filterController = FilterController();
 
   bool isLoading = false;
@@ -117,13 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onCharacterClick(Character character) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (ctx) => CharacterDetails(
-          character: character,
-        ),
-      ),
-    );
+    toCharacterDetails(context, character);
   }
 
   void onEpisodeClick(Episode episode) {

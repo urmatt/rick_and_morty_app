@@ -31,7 +31,6 @@ class Routes {
           ],
           child: HomeScreen(),
         ),
-    character: (context) => CharacterDetails(),
     // location: (context) =>
   };
 }

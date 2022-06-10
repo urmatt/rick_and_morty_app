@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/data/models/character.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rick_and_morty_app/presentation/core/widgets/character_status.dart';
 
 class CharacterCard extends StatelessWidget {
   final Character character;
@@ -43,7 +44,7 @@ class CharacterCard extends StatelessWidget {
                     character.name,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  status(),
+                  CharacterStatus(character),
                   Text(
                     "Last known location:",
                     style: Theme.of(context).textTheme.labelMedium,
@@ -67,24 +68,6 @@ class CharacterCard extends StatelessWidget {
       BuildContext context, String url, DownloadProgress progress) {
     return CircularProgressIndicator(
       value: progress.progress,
-    );
-  }
-
-  Widget status() {
-    return Row(
-      children: [
-        Icon(
-          Icons.circle,
-          size: 10,
-          color: character.isAlive
-              ? Colors.green
-              : character.isDead
-                  ? Colors.red
-                  : Colors.grey,
-        ),
-        SizedBox(width: 4),
-        Text(character.status),
-      ],
     );
   }
 }

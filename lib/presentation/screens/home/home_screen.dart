@@ -10,6 +10,7 @@ import 'package:rick_and_morty_app/presentation/core/controllers/filter_controll
 import 'package:rick_and_morty_app/presentation/core/widgets/cards/character_card.dart';
 import 'package:rick_and_morty_app/presentation/core/widgets/scroll_view/load_more_list.dart';
 import 'package:rick_and_morty_app/presentation/routes/routes.dart';
+import 'package:rick_and_morty_app/presentation/screens/character/chracter_details.dart';
 import 'package:rick_and_morty_app/presentation/screens/home/pages/characters_list_view.dart';
 import 'package:rick_and_morty_app/presentation/screens/home/pages/episodes_list_view.dart';
 
@@ -116,8 +117,13 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onCharacterClick(Character character) {
-    GetIt.I.registerSingleton<Character>(character);
-    Navigator.of(context).pushNamed(Routes.character);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (ctx) => CharacterDetails(
+          character: character,
+        ),
+      ),
+    );
   }
 
   void onEpisodeClick(Episode episode) {
